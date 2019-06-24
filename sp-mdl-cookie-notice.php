@@ -36,9 +36,7 @@ function SP_MDL_Cookie_Notice()
 SP_MDL_Cookie_Notice();
 
 /**
- * Main SP_MDL_Cookie_Notice Class
- *
- * @class SP_MDL_Cookie_Notice
+ * @class   SP_MDL_Cookie_Notice
  * @version 1.0.0
  * @since   1.0.0
  * @package SP_MDL_Cookie_Notice
@@ -93,6 +91,8 @@ final class SP_MDL_Cookie_Notice
 
         register_activation_hook(__FILE__, array($this, 'install'));
 
+        add_action('init', array($this, 'load_plugin_textdomain'));
+
         add_action('init', array($this, 'setup'));
 
         // TODO create plugin updater API
@@ -138,7 +138,7 @@ final class SP_MDL_Cookie_Notice
      */
     public function load_plugin_textdomain()
     {
-        load_plugin_textdomain('ocean-cookie-notice', false, dirname(plugin_basename(__FILE__)) . '/languages/');
+        load_plugin_textdomain('sp-mdl-cookie-notice', false, dirname(plugin_basename(__FILE__)) . '/languages/');
     }
 
     /**
@@ -194,7 +194,7 @@ final class SP_MDL_Cookie_Notice
     {
         $theme = wp_get_theme();
 
-        if ('material-design-lite' == $theme->name || 'material-design-lite' == $theme->template) {
+        if ('Material Design Lite' == $theme->name || 'material-design-lite' == $theme->template) {
             add_filter('sp_localize_array', array($this, 'localize_array'));
             add_action('wp_enqueue_scripts', array($this, 'public_scripts'), 999);
 
