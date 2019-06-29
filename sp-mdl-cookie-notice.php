@@ -148,7 +148,7 @@ final class SP_MDL_Cookie_Notice
      */
     public function __clone()
     {
-        _doing_it_wrong(__FUNCTION__, __('Cheatin&#8217; huh?'), $version);
+        _doing_it_wrong(__FUNCTION__, __('Cheatin&#8217; huh?', 'sp-mdl-cookie-notice'), $version);
     }
 
     /**
@@ -158,7 +158,7 @@ final class SP_MDL_Cookie_Notice
      */
     public function __wakeup()
     {
-        _doing_it_wrong(__FUNCTION__, __('Cheatin&#8217; huh?'), $version);
+        _doing_it_wrong(__FUNCTION__, __('Cheatin&#8217; huh?', 'sp-mdl-cookie-notice'), $version);
     }
 
     /**
@@ -490,16 +490,16 @@ final class SP_MDL_Cookie_Notice
                 'show' => get_theme_mod('cookie_notice_enabled', true),
                 // TODO: add more options to cookie style
                 'style' => get_theme_mod('cookie_notice_style', 'popup'),
-                'title' => get_theme_mod('cookie_notice_popup_title', __('Cookies', 'material-design-lite')),
-                'content' => esc_html__(get_theme_mod('cookie_notice_popup_content', __('By continuing to use this website, you consent to the use of cookies in accordance with our Cookie Policy.', 'material-design-lite'))),
+                'title' => get_theme_mod('cookie_notice_popup_title', __('Cookies', 'sp-mdl-cookie-notice')),
+                'content' => esc_html(get_theme_mod('cookie_notice_popup_content', __('By continuing to use this website, you consent to the use of cookies in accordance with our Cookie Policy.', 'sp-mdl-cookie-notice'))),
                 'expires' => get_theme_mod('cookie_notice_expiry', 2592000),
-                'positive' => get_theme_mod('cookie_notice_positive', __('Accept', 'material-design-lite')),
+                'positive' => get_theme_mod('cookie_notice_positive', __('Accept', 'sp-mdl-cookie-notice')),
             );
 
             if (get_theme_mod('cookie_notice_negative', false)) :
                 $array['cookieNotice']['negative'] = array(
                     'url' => get_theme_mod('cookie_notice_negative_url', '#'),
-                    'title' => get_theme_mod('cookie_notice_negative_title', __('Learn more', 'material-design-lite'))
+                    'title' => get_theme_mod('cookie_notice_negative_title', __('Learn more', 'sp-mdl-cookie-notice'))
                 );
             endif;
 
