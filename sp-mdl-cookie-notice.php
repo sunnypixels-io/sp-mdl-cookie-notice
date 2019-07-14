@@ -515,14 +515,16 @@ final class SP_MDL_Cookie_Notice
      */
     public function public_scripts()
     {
+        $min = sp_mdl_scripts_postfix();
+
         // load wpCookies helper
         wp_enqueue_script('utils');
 
         // Load main stylesheet
-        wp_enqueue_style('sp-mdl-cookie-notice-style', plugins_url('/assets/css/public.css', __FILE__), array('sp-mdl-style'));
+        wp_enqueue_style('sp-mdl-cookie-notice-style', plugins_url('/assets/css/public' . $min . '.css', __FILE__), array('sp-mdl-style'));
 
         // Load custom js methods.
-        wp_enqueue_script('sp-mdl-cookie-notice-scripts', plugins_url('/assets/js/public.js', __FILE__), array('jquery', 'sp-mdl-scripts'), null, true);
+        wp_enqueue_script('sp-mdl-cookie-notice-scripts', plugins_url('/assets/js/public' . $min . '.js', __FILE__), array('jquery', 'sp-mdl-scripts'), null, true);
     }
 
     /**
@@ -532,11 +534,13 @@ final class SP_MDL_Cookie_Notice
      */
     public function admin_scripts()
     {
+        $min = sp_mdl_scripts_postfix();
+
         // Load main stylesheet
         // wp_enqueue_style('sp-mdl-style', plugins_url('/assets/css/public.css', __FILE__));
 
         // Load custom js methods.
-        wp_enqueue_script('sp-mdl-cookie-notice-js-admin', plugins_url('/assets/js/admin.js', __FILE__), array('jquery'), null, true);
+        wp_enqueue_script('sp-mdl-cookie-notice-js-admin', plugins_url('/assets/js/admin' . $min . '.js', __FILE__), array('jquery'), null, true);
     }
 
 }
