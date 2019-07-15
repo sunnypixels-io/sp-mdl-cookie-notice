@@ -195,7 +195,7 @@ final class SP_MDL_Cookie_Notice
         $theme = wp_get_theme();
 
         if ('Material Design Lite' == $theme->name || 'material-design-lite' == $theme->template) {
-            add_filter('sp_localize_array', array($this, 'localize_array'));
+            add_filter('sp_localize_public_array', array($this, 'localize_array'), 1);
             add_action('wp_enqueue_scripts', array($this, 'public_scripts'), 999);
 
             if (is_admin()) {
@@ -240,7 +240,7 @@ final class SP_MDL_Cookie_Notice
                 'priority' => 199,
             ));
 
-            Kirki::add_field('material_design_lite', [
+            Kirki::add_field('sp_mdl_theme', [
                 'type' => 'toggle',
                 'settings' => 'cookie_notice_enabled',
                 'label' => esc_html__('Enable Cookies notice', 'sp-mdl-cookie-notice'),
@@ -249,7 +249,7 @@ final class SP_MDL_Cookie_Notice
                 'priority' => 120
             ]);
 
-            Kirki::add_field('material_design_lite', [
+            Kirki::add_field('sp_mdl_theme', [
                 'type' => 'toggle',
                 'settings' => 'cookie_notice_only_europe',
                 'label' => esc_html__('Show only for Europe', 'sp-mdl-cookie-notice'),
@@ -265,7 +265,7 @@ final class SP_MDL_Cookie_Notice
                 ],
             ]);
 
-            Kirki::add_field('material_design_lite', [
+            Kirki::add_field('sp_mdl_theme', [
                 'type' => 'custom',
                 'settings' => 'cookie_notice_title',
                 'section' => 'sp_mdl_cookie_notice',
@@ -280,7 +280,7 @@ final class SP_MDL_Cookie_Notice
                 ],
             ]);
 
-            Kirki::add_field('material_design_lite', [
+            Kirki::add_field('sp_mdl_theme', [
                 'type' => 'text',
                 'settings' => 'cookie_notice_popup_title',
                 'label' => esc_html__('Title', 'sp-mdl-cookie-notice'),
@@ -296,7 +296,7 @@ final class SP_MDL_Cookie_Notice
                 ],
             ]);
 
-            Kirki::add_field('material_design_lite', [
+            Kirki::add_field('sp_mdl_theme', [
                 'type' => 'editor',
                 'settings' => 'cookie_notice_popup_content',
                 'label' => esc_html__('Content', 'sp-mdl-cookie-notice'),
@@ -312,7 +312,7 @@ final class SP_MDL_Cookie_Notice
                 ],
             ]);
 
-            Kirki::add_field('material_design_lite', [
+            Kirki::add_field('sp_mdl_theme', [
                 'type' => 'custom',
                 'settings' => 'cookie_notice_accept_cookies_title',
                 'section' => 'sp_mdl_cookie_notice',
@@ -327,7 +327,7 @@ final class SP_MDL_Cookie_Notice
                 ],
             ]);
 
-            Kirki::add_field('material_design_lite', [
+            Kirki::add_field('sp_mdl_theme', [
                 'type' => 'select',
                 'settings' => 'cookie_notice_expiry',
                 'label' => esc_html__('Cookie Expiry', 'sp-mdl-cookie-notice'),
@@ -354,7 +354,7 @@ final class SP_MDL_Cookie_Notice
                 ],
             ]);
 
-            Kirki::add_field('material_design_lite', [
+            Kirki::add_field('sp_mdl_theme', [
                 'type' => 'text',
                 'settings' => 'cookie_notice_positive',
                 'label' => esc_html__('Accept button', 'sp-mdl-cookie-notice'),
@@ -370,7 +370,7 @@ final class SP_MDL_Cookie_Notice
                 ],
             ]);
 
-            Kirki::add_field('material_design_lite', [
+            Kirki::add_field('sp_mdl_theme', [
                 'type' => 'custom',
                 'settings' => 'cookie_notice_learn_more_title',
                 'section' => 'sp_mdl_cookie_notice',
@@ -385,7 +385,7 @@ final class SP_MDL_Cookie_Notice
                 ],
             ]);
 
-            Kirki::add_field('material_design_lite', [
+            Kirki::add_field('sp_mdl_theme', [
                 'type' => 'toggle',
                 'settings' => 'cookie_notice_negative',
                 'label' => esc_html__('Enable Learn more link', 'sp-mdl-cookie-notice'),
@@ -401,7 +401,7 @@ final class SP_MDL_Cookie_Notice
                 ],
             ]);
 
-            Kirki::add_field('material_design_lite', [
+            Kirki::add_field('sp_mdl_theme', [
                 'type' => 'text',
                 'settings' => 'cookie_notice_negative_title',
                 'label' => esc_html__('Learn more button', 'sp-mdl-cookie-notice'),
@@ -421,7 +421,7 @@ final class SP_MDL_Cookie_Notice
                 ],
             ]);
 
-            Kirki::add_field('material_design_lite', [
+            Kirki::add_field('sp_mdl_theme', [
                 'type' => 'link',
                 'settings' => 'cookie_notice_negative_url',
                 'label' => __('Url', 'sp-mdl-cookie-notice'),
@@ -441,7 +441,7 @@ final class SP_MDL_Cookie_Notice
                 ],
             ]);
 
-            Kirki::add_field('material_design_lite', [
+            Kirki::add_field('sp_mdl_theme', [
                 'type' => 'custom',
                 'settings' => 'cookie_notice_reset_title',
                 'section' => 'sp_mdl_cookie_notice',
@@ -456,7 +456,7 @@ final class SP_MDL_Cookie_Notice
                 ],
             ]);
 
-            Kirki::add_field('material_design_lite', [
+            Kirki::add_field('sp_mdl_theme', [
                 'type' => 'custom',
                 'settings' => 'cookie_notice_reset_button',
                 'section' => 'sp_mdl_cookie_notice',
@@ -521,7 +521,7 @@ final class SP_MDL_Cookie_Notice
         wp_enqueue_script('utils');
 
         // Load main stylesheet
-        wp_enqueue_style('sp-mdl-cookie-notice-style', plugins_url('/assets/css/public' . $min . '.css', __FILE__), array('sp-mdl-style'));
+        // wp_enqueue_style('sp-mdl-cookie-notice-style', plugins_url('/assets/css/public' . $min . '.css', __FILE__), array('sp-mdl-style'));
 
         // Load custom js methods.
         wp_enqueue_script('sp-mdl-cookie-notice-scripts', plugins_url('/assets/js/public' . $min . '.js', __FILE__), array('jquery', 'sp-mdl-scripts'), null, true);
