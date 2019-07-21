@@ -194,7 +194,7 @@ final class SP_MDL_Cookie_Notice
     {
         $theme = wp_get_theme();
 
-        if ('Material Design Lite' == $theme->name || 'material-design-lite' == $theme->template) {
+        if ('SP MDL' == $theme->name || 'sp-mdl' == $theme->template) {
             add_filter('sp_localize_public_array', array($this, 'localize_array'), 1);
             add_action('wp_enqueue_scripts', array($this, 'public_scripts'), 999);
 
